@@ -1,0 +1,50 @@
+[
+  {
+    "id": "unicorn-rainbow",
+    "title": "Magical Unicorn 🦄",
+    "filename": "unicorn.svg",
+    "category": "Fairy Tale",
+    "order": 1,
+    "featured": true
+  },
+  {
+    "id": "cute-dinosaur",
+    "title": "Baby Dino 🦕",
+    "filename": "dinosaur.svg",
+    "category": "Animals",
+    "order": 2,
+    "featured": true
+  },
+  {
+    "id": "princess-castle",
+    "title": "Fairy Princess 👑",
+    "filename": "princess-castle.svg",
+    "category": "Fairy Tale",
+    "order": 3,
+    "featured": false
+  },
+  {
+    "id": "puppy-kitten",
+    "title": "Puppy & Kitten 🐶🐱",
+    "filename": "puppy-kitten.svg",
+    "category": "Animals",
+    "order": 4,
+    "featured": false
+  },
+  {
+    "id": "space-rocket",
+    "title": "Space Rocket 🚀",
+    "filename": "space-rocket.svg",
+    "category": "Adventure",
+    "order": 5,
+    "featured": false
+  },
+  {
+    "id": "ocean-turtle",
+    "title": "Sea Turtle 🐢",
+    "filename": "ocean-turtle.svg",
+    "category": "Ocean",
+    "order": 6,
+    "featured": false
+  }
+]

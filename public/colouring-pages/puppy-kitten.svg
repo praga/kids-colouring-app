@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" fill="none">
+  <rect width="800" height="1000" fill="#FFFFFF"/>
+  <!-- Butterfly at Top -->
+  <g stroke="#1F2937" stroke-width="7" stroke-linecap="round" fill="#FFFFFF">
+    <ellipse cx="400" cy="180" rx="8" ry="28"/>
+    <!-- Wings Left -->
+    <path d="M 395 160 C 350 110 300 140 320 200 C 340 230 380 200 395 180 Z"/>
+    <path d="M 395 180 C 360 210 330 250 350 280 C 380 280 395 230 395 200 Z"/>
+    <!-- Wings Right -->
+    <path d="M 405 160 C 450 110 500 140 480 200 C 460 230 420 200 405 180 Z"/>
+    <path d="M 405 180 C 440 210 470 250 450 280 C 420 280 405 230 405 200 Z"/>
+    <!-- Antennae -->
+    <path d="M 396 155 Q 380 130 370 135 M 404 155 Q 420 130 430 135" fill="none" stroke-width="5"/>
+  </g>
+
+  <!-- Ground -->
+  <path d="M 40 880 Q 400 850 760 880 L 760 980 L 40 980 Z" stroke="#1F2937" stroke-width="8" fill="#FFFFFF"/>
+
+  <!-- Cute Puppy (Left) -->
+  <g stroke="#1F2937" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="#FFFFFF">
+    <!-- Body -->
+    <path d="M 170 580 C 130 650 140 760 170 820 C 220 860 310 860 350 810 C 370 750 360 670 330 600 C 290 560 200 550 170 580 Z"/>
+    <!-- Floppy Left Ear -->
+    <path d="M 180 380 C 120 400 100 480 130 540 C 160 570 190 530 190 480 Z"/>
+    <!-- Floppy Right Ear -->
+    <path d="M 300 380 C 360 400 380 480 350 540 C 320 570 290 530 290 480 Z"/>
+    
+    <!-- Puppy Head -->
+    <circle cx="240" cy="450" r="75"/>
+
+    <!-- Big Puppy Eyes -->
+    <ellipse cx="215" cy="435" rx="14" ry="18" fill="#1F2937"/>
+    <circle cx="220" cy="428" r="5" fill="#FFFFFF"/>
+    <ellipse cx="265" cy="435" rx="14" ry="18" fill="#1F2937"/>
+    <circle cx="270" cy="428" r="5" fill="#FFFFFF"/>
+
+    <!-- Puppy Snout and Cute Nose -->
+    <ellipse cx="240" cy="475" rx="26" ry="18"/>
+    <path d="M 230 465 L 250 465 C 250 480 230 480 230 465 Z" fill="#1F2937"/>
+    <path d="M 240 475 L 240 488 M 240 488 Q 230 498 220 488 M 240 488 Q 250 498 260 488" fill="none" stroke-width="6"/>
+
+    <!-- Front Paws -->
+    <path d="M 190 770 L 195 870 C 195 890 235 890 235 870 L 230 780"/>
+    <path d="M 260 780 L 265 870 C 265 890 305 890 305 870 L 300 770"/>
+    <line x1="208" y1="875" x2="208" y2="888" stroke-width="5"/>
+    <line x1="222" y1="875" x2="222" y2="888" stroke-width="5"/>
+    <line x1="278" y1="875" x2="278" y2="888" stroke-width="5"/>
+    <line x1="292" y1="875" x2="292" y2="888" stroke-width="5"/>
+
+    <!-- Wagging Tail -->
+    <path d="M 150 720 C 90 700 80 620 110 590 C 130 630 140 680 160 720 Z"/>
+  </g>
+
+  <!-- Cute Kitten (Right) -->
+  <g stroke="#1F2937" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="#FFFFFF">
+    <!-- Pointy Cat Ears -->
+    <polygon points="490,400 480,310 550,360"/>
+    <polygon points="500,380 490,335 535,365" stroke-width="5"/>
+    <polygon points="630,400 640,310 570,360"/>
+    <polygon points="620,380 630,335 585,365" stroke-width="5"/>
+
+    <!-- Cat Head -->
+    <circle cx="560" cy="460" r="70"/>
+
+    <!-- Big Sparkly Cat Eyes -->
+    <ellipse cx="535" cy="450" rx="14" ry="18" fill="#1F2937"/>
+    <circle cx="540" cy="442" r="5" fill="#FFFFFF"/>
+    <circle cx="530" cy="456" r="2.5" fill="#FFFFFF"/>
+    <ellipse cx="585" cy="450" rx="14" ry="18" fill="#1F2937"/>
+    <circle cx="590" cy="442" r="5" fill="#FFFFFF"/>
+    <circle cx="580" cy="456" r="2.5" fill="#FFFFFF"/>
+
+    <!-- Cute Triangle Nose & Whiskers -->
+    <polygon points="555,475 565,475 560,483" fill="#1F2937"/>
+    <path d="M 560 483 Q 550 495 540 485 M 560 483 Q 570 495 580 485" fill="none" stroke-width="6"/>
+
+    <!-- Whiskers Left & Right -->
+    <line x1="510" y1="475" x2="450" y2="465" stroke-width="5"/>
+    <line x1="510" y1="485" x2="445" y2="488" stroke-width="5"/>
+    <line x1="610" y1="475" x2="670" y2="465" stroke-width="5"/>
+    <line x1="610" y1="485" x2="675" y2="488" stroke-width="5"/>
+
+    <!-- Cat Body -->
+    <path d="M 500 580 C 470 650 480 760 510 820 C 550 860 630 860 670 810 C 690 750 680 660 650 580 C 610 550 540 550 500 580 Z"/>
+
+    <!-- Front Paws -->
+    <path d="M 525 780 L 530 870 C 530 890 565 890 565 870 L 560 780"/>
+    <path d="M 590 780 L 595 870 C 595 890 630 890 630 870 L 625 780"/>
+
+    <!-- Cat Tail Curling Gracefully -->
+    <path d="M 660 760 C 730 760 750 660 710 620 C 690 650 710 720 660 730 Z"/>
+  </g>
+</svg>

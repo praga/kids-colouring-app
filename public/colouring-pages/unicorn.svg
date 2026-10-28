@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" fill="none">
+  <rect width="800" height="1000" fill="#FFFFFF"/>
+  <!-- Rainbow in background -->
+  <g stroke="#1F2937" stroke-width="8" stroke-linecap="round">
+    <path d="M 120 480 A 280 280 0 0 1 680 480" fill="none"/>
+    <path d="M 160 480 A 240 240 0 0 1 640 480" fill="none"/>
+    <path d="M 200 480 A 200 200 0 0 1 600 480" fill="none"/>
+    <path d="M 240 480 A 160 160 0 0 1 560 480" fill="none"/>
+  </g>
+
+  <!-- Fluffy Cloud Left -->
+  <path d="M 80 500 C 60 470 90 420 130 430 C 150 400 200 400 220 430 C 260 420 280 460 270 490 C 290 520 260 560 220 550 C 190 570 140 570 110 540 C 70 550 50 520 80 500 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="8" stroke-linejoin="round"/>
+
+  <!-- Fluffy Cloud Right -->
+  <path d="M 520 500 C 500 470 530 420 570 430 C 590 400 640 400 660 430 C 700 420 720 460 710 490 C 730 520 700 560 660 550 C 630 570 580 570 550 540 C 510 550 490 520 520 500 Z" fill="#FFFFFF" stroke="#1F2937" stroke-width="8" stroke-linejoin="round"/>
+
+  <!-- Magical Unicorn -->
+  <g stroke="#1F2937" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="#FFFFFF">
+    <!-- Body -->
+    <path d="M 280 620 C 270 570 330 520 420 530 C 490 540 540 580 550 650 C 560 740 530 790 490 820 C 420 840 330 830 290 770 C 270 730 270 660 280 620 Z"/>
+    
+    <!-- Neck and Head -->
+    <path d="M 320 540 C 310 480 340 400 370 360 C 430 300 510 320 520 380 C 530 430 470 470 450 530"/>
+    <path d="M 370 360 C 330 350 290 380 270 420 C 250 460 280 500 340 490"/>
+
+    <!-- Cute Big Eye -->
+    <ellipse cx="360" cy="410" rx="18" ry="24" fill="#1F2937"/>
+    <circle cx="366" cy="402" r="7" fill="#FFFFFF"/>
+    <circle cx="355" cy="420" r="3" fill="#FFFFFF"/>
+    <!-- Eyelashes -->
+    <path d="M 345 390 L 335 380 M 355 385 L 350 372 M 372 388 L 380 375" stroke="#1F2937" stroke-width="6"/>
+
+    <!-- Nostril and Smile -->
+    <circle cx="280" cy="455" r="4" fill="#1F2937"/>
+    <path d="M 280 475 Q 300 490 320 475" fill="none" stroke="#1F2937" stroke-width="6"/>
+
+    <!-- Cheerful Cheek Blush -->
+    <ellipse cx="330" cy="450" rx="14" ry="9" stroke="#E5E7EB" fill="#FFF0F5" stroke-dasharray="4 4"/>
+
+    <!-- Cute Ear -->
+    <path d="M 430 330 C 430 280 460 280 470 320 C 460 340 440 345 430 330 Z"/>
+    <path d="M 440 325 C 440 300 455 300 460 320" fill="none"/>
+
+    <!-- Magical Unicorn Horn with Swirls -->
+    <path d="M 390 330 L 415 170 L 435 320 Z" fill="#FFFFFF"/>
+    <path d="M 398 290 L 430 280" fill="none"/>
+    <path d="M 405 250 L 426 240" fill="none"/>
+    <path d="M 410 210 L 422 200" fill="none"/>
+
+    <!-- Mane curls -->
+    <path d="M 440 350 C 490 340 530 380 500 420 C 530 420 550 470 510 500 C 540 510 540 560 480 570 C 460 550 450 540 440 530"/>
+    
+    <!-- Front Legs -->
+    <path d="M 320 780 L 310 920 C 310 935 345 935 350 920 L 365 790"/>
+    <path d="M 380 790 L 390 910 C 390 925 425 925 425 910 L 420 800"/>
+
+    <!-- Back Legs -->
+    <path d="M 450 790 L 460 915 C 460 930 495 930 495 915 L 490 795"/>
+    <path d="M 505 770 L 525 890 C 525 905 560 905 555 890 L 530 760"/>
+
+    <!-- Hooves lines -->
+    <line x1="312" y1="895" x2="348" y2="895" stroke-width="6"/>
+    <line x1="388" y1="885" x2="423" y2="885" stroke-width="6"/>
+    <line x1="462" y1="890" x2="493" y2="890" stroke-width="6"/>
+    <line x1="522" y1="865" x2="553" y2="865" stroke-width="6"/>
+
+    <!-- Fluffy Swirly Tail -->
+    <path d="M 545 670 C 620 670 670 730 640 810 C 620 860 560 880 530 840 C 570 820 590 780 570 750 C 550 720 530 720 520 700"/>
+  </g>
+
+  <!-- Stars in sky -->
+  <g fill="#FFFFFF" stroke="#1F2937" stroke-width="6">
+    <polygon points="180,220 190,245 215,245 195,260 202,285 180,270 158,285 165,260 145,245 170,245"/>
+    <polygon points="630,220 638,240 660,240 642,252 648,272 630,260 612,272 618,252 600,240 622,240"/>
+    <polygon points="680,360 686,375 700,375 688,385 692,400 680,390 668,400 672,385 660,375 674,375"/>
+    <polygon points="120,340 126,355 140,355 128,365 132,380 120,370 108,380 112,365 100,355 114,355"/>
+  </g>
+</svg>

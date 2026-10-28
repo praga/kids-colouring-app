@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" fill="none">
+  <rect width="800" height="1000" fill="#FFFFFF"/>
+  <!-- Saturn with Ring -->
+  <g stroke="#1F2937" stroke-width="7" stroke-linecap="round" fill="#FFFFFF">
+    <circle cx="160" cy="220" r="60"/>
+    <ellipse cx="160" cy="220" rx="100" ry="25" fill="none" stroke-width="8" transform="rotate(-20 160 220)"/>
+  </g>
+
+  <!-- Big Cratered Moon Right -->
+  <g stroke="#1F2937" stroke-width="7" stroke-linecap="round" fill="#FFFFFF">
+    <circle cx="680" cy="200" r="75"/>
+    <circle cx="660" cy="170" r="14" fill="#FFFFFF"/>
+    <circle cx="705" cy="225" r="18" fill="#FFFFFF"/>
+    <circle cx="640" cy="230" r="10" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Flying Cartoon Rocket Ship in Center -->
+  <g stroke="#1F2937" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="#FFFFFF">
+    <!-- Rocket Fins (Wings) Left & Right -->
+    <path d="M 270 540 C 220 570 170 680 180 730 C 220 730 270 690 280 640 Z"/>
+    <path d="M 530 540 C 580 570 630 680 620 730 C 580 730 530 690 520 640 Z"/>
+
+    <!-- Rocket Body -->
+    <path d="M 400 180 C 330 280 270 440 280 670 L 520 670 C 530 440 470 280 400 180 Z"/>
+
+    <!-- Rocket Nose Cone -->
+    <path d="M 400 180 C 360 240 330 300 320 340 L 480 340 C 470 300 440 240 400 180 Z"/>
+
+    <!-- Large Porthole Window with Cute Teddy Bear Inside -->
+    <circle cx="400" cy="460" r="70"/>
+    <circle cx="400" cy="460" r="58" stroke-width="6"/>
+
+    <!-- Teddy Astronaut Inside Window -->
+    <!-- Bear Ears -->
+    <circle cx="370" cy="425" r="15"/>
+    <circle cx="430" cy="425" r="15"/>
+    <!-- Bear Head -->
+    <circle cx="400" cy="460" r="38"/>
+    <!-- Bear Eyes & Snout -->
+    <circle cx="390" cy="455" r="4" fill="#1F2937"/>
+    <circle cx="410" cy="455" r="4" fill="#1F2937"/>
+    <ellipse cx="400" cy="470" rx="10" ry="7"/>
+    <circle cx="400" cy="468" r="3" fill="#1F2937"/>
+    <path d="M 400 471 Q 400 476 396 476 M 400 471 Q 400 476 404 476" stroke-width="3"/>
+
+    <!-- Rocket Thruster Base -->
+    <rect x="330" y="670" width="140" height="35" rx="5"/>
+
+    <!-- Rocket Flame Blasts Below -->
+    <path d="M 345 705 C 330 760 300 840 400 930 C 500 840 470 760 455 705 Z"/>
+    <path d="M 370 705 C 360 745 350 790 400 850 C 450 790 440 745 430 705 Z"/>
+  </g>
+
+  <!-- Twinkling Stars in Deep Space -->
+  <g fill="#FFFFFF" stroke="#1F2937" stroke-width="6">
+    <polygon points="120,440 128,460 150,460 132,472 138,492 120,480 102,492 108,472 90,460 112,460"/>
+    <polygon points="680,480 688,500 710,500 692,512 698,532 680,520 662,532 668,512 650,500 672,500"/>
+    <polygon points="220,840 226,855 240,855 228,865 232,880 220,870 208,880 212,865 200,855 214,855"/>
+    <polygon points="600,820 606,835 620,835 608,845 612,860 600,850 588,860 592,845 580,835 594,835"/>
+  </g>
+</svg>

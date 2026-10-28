@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  kids-colouring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kids-colouring-app:latest
+    container_name: kids-colouring-app
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    environment:
+      - NODE_ENV=production
+      - PORT=8086
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      # Mount host colouring pages directly so dropping files in public/colouring-pages reflects immediately
+      - ./public/colouring-pages:/app/dist/colouring-pages
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:8086/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" fill="none">
+  <rect width="800" height="1000" fill="#FFFFFF"/>
+  <!-- Smiling Sun in Sky -->
+  <g stroke="#1F2937" stroke-width="7" stroke-linecap="round" fill="#FFFFFF">
+    <circle cx="160" cy="180" r="70"/>
+    <!-- Sun rays -->
+    <line x1="160" y1="80" x2="160" y2="50"/>
+    <line x1="160" y1="280" x2="160" y2="310"/>
+    <line x1="60" y1="180" x2="30" y2="180"/>
+    <line x1="260" y1="180" x2="290" y2="180"/>
+    <line x1="90" y1="110" x2="70" y2="90"/>
+    <line x1="230" y1="250" x2="250" y2="270"/>
+    <line x1="90" y1="250" x2="70" y2="270"/>
+    <line x1="230" y1="110" x2="250" y2="90"/>
+    <!-- Happy Sun Face -->
+    <circle cx="140" cy="170" r="8" fill="#1F2937"/>
+    <circle cx="180" cy="170" r="8" fill="#1F2937"/>
+    <path d="M 140 195 Q 160 215 180 195" fill="none" stroke-width="6"/>
+  </g>
+
+  <!-- Jungle Palm Tree Right -->
+  <g stroke="#1F2937" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="#FFFFFF">
+    <!-- Trunk with segments -->
+    <path d="M 660 880 C 640 680 660 480 680 340 L 730 350 C 700 500 700 700 730 880 Z"/>
+    <line x1="655" y1="780" x2="715" y2="790"/>
+    <line x1="655" y1="670" x2="710" y2="680"/>
+    <line x1="660" y1="560" x2="705" y2="570"/>
+    <line x1="670" y1="450" x2="700" y2="455"/>
+
+    <!-- Palm Leaves -->
+    <path d="M 690 340 C 620 280 500 320 480 380 C 530 400 620 380 690 350 Z"/>
+    <path d="M 690 340 C 660 220 540 180 500 230 C 560 270 630 290 690 340 Z"/>
+    <path d="M 700 340 C 730 200 800 220 800 280 C 760 300 730 320 700 340 Z"/>
+    <path d="M 710 350 C 760 340 820 400 810 470 C 770 440 740 400 710 350 Z"/>
+  </g>
+
+  <!-- Ground Mound with Grass -->
+  <path d="M 20 880 Q 400 840 780 880 L 780 980 L 20 980 Z" stroke="#1F2937" stroke-width="8" fill="#FFFFFF"/>
+  <path d="M 100 860 L 110 830 L 125 865 M 120 865 L 135 835 L 145 865" stroke="#1F2937" stroke-width="6"/>
+  <path d="M 450 850 L 460 820 L 475 855 M 470 855 L 485 825 L 495 855" stroke="#1F2937" stroke-width="6"/>
+
+  <!-- Cute Baby Long-Neck Dino -->
+  <g stroke="#1F2937" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="#FFFFFF">
+    <!-- Back Ridge Dino Dots/Scales -->
+    <circle cx="340" cy="540" r="14"/>
+    <circle cx="390" cy="560" r="18"/>
+    <circle cx="450" cy="590" r="15"/>
+    <circle cx="280" cy="450" r="12"/>
+
+    <!-- Body & Long Neck -->
+    <path d="M 330 280 C 310 240 250 240 220 280 C 190 320 220 370 270 380 C 290 440 280 520 250 580 C 210 650 200 750 240 820 C 290 870 480 880 560 820 C 650 750 720 620 770 540 C 750 580 660 700 580 740 C 530 630 460 550 350 480 C 340 420 350 350 330 280 Z"/>
+
+    <!-- Head and Cute Snout -->
+    <path d="M 220 280 C 200 260 160 270 140 310 C 120 350 150 400 200 400 C 230 400 255 390 270 380"/>
+
+    <!-- Big Adorable Eye -->
+    <ellipse cx="205" cy="325" rx="18" ry="22" fill="#1F2937"/>
+    <circle cx="212" cy="318" r="7" fill="#FFFFFF"/>
+    <circle cx="200" cy="335" r="3" fill="#FFFFFF"/>
+
+    <!-- Smiling Mouth -->
+    <path d="M 155 365 Q 180 385 205 365" fill="none" stroke-width="6"/>
+    <!-- Rosy Cheek -->
+    <ellipse cx="230" cy="355" rx="12" ry="8" fill="#FFF0F5" stroke="#E5E7EB" stroke-dasharray="3 3"/>
+
+    <!-- Cute Dino Belly Plate -->
+    <path d="M 270 650 C 250 720 280 810 340 840 C 410 860 480 820 480 770" fill="none" stroke-width="6"/>
+
+    <!-- Stumpy Front Legs -->
+    <path d="M 260 810 L 250 900 C 250 915 290 915 295 900 L 310 820"/>
+    <path d="M 330 830 L 335 895 C 335 910 375 910 375 895 L 380 835"/>
+
+    <!-- Stumpy Back Legs -->
+    <path d="M 440 825 L 445 895 C 445 910 485 910 485 895 L 490 820"/>
+    <path d="M 520 800 L 535 885 C 535 900 575 900 570 885 L 555 790"/>
+
+    <!-- Cute Toenails -->
+    <circle cx="265" cy="902" r="5" fill="#1F2937"/>
+    <circle cx="280" cy="902" r="5" fill="#1F2937"/>
+    <circle cx="348" cy="897" r="5" fill="#1F2937"/>
+    <circle cx="362" cy="897" r="5" fill="#1F2937"/>
+    <circle cx="458" cy="897" r="5" fill="#1F2937"/>
+    <circle cx="472" cy="897" r="5" fill="#1F2937"/>
+  </g>
+
+  <!-- Baby Pterodactyl flying high -->
+  <g stroke="#1F2937" stroke-width="6" fill="#FFFFFF" stroke-linejoin="round">
+    <path d="M 400 180 Q 430 140 470 170 Q 510 140 540 180 Q 470 200 400 180 Z"/>
+    <circle cx="470" cy="170" r="10"/>
+    <circle cx="468" cy="168" r="2" fill="#1F2937"/>
+  </g>
+</svg>

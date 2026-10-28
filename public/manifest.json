@@ -1,0 +1,18 @@
+{
+  "name": "Kids Colouring Book",
+  "short_name": "Colouring 🎨",
+  "description": "Fun, offline colouring book app with palm rejection and stylus support for kids",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFFDF9",
+  "theme_color": "#FF6B8B",
+  "icons": [
+    {
+      "src": "/colouring-pages/unicorn.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
