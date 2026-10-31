@@ -22,12 +22,29 @@ import {
 
 // Fallback pages list in case network fetch is delayed in offline mode
 const FALLBACK_PAGES: PageMetadata[] = [
-  { id: 'unicorn-rainbow', title: 'Magical Unicorn 🦄', filename: 'unicorn.svg', category: 'Fairy Tale', order: 1, featured: true },
-  { id: 'cute-dinosaur', title: 'Baby Dino 🦕', filename: 'dinosaur.svg', category: 'Animals', order: 2, featured: true },
-  { id: 'princess-castle', title: 'Fairy Princess 👑', filename: 'princess-castle.svg', category: 'Fairy Tale', order: 3, featured: false },
-  { id: 'puppy-kitten', title: 'Puppy & Kitten 🐶🐱', filename: 'puppy-kitten.svg', category: 'Animals', order: 4, featured: false },
-  { id: 'space-rocket', title: 'Space Rocket 🚀', filename: 'space-rocket.svg', category: 'Adventure', order: 5, featured: false },
-  { id: 'ocean-turtle', title: 'Sea Turtle 🐢', filename: 'ocean-turtle.svg', category: 'Ocean', order: 6, featured: false }
+  { id: 'kpop-huntrix-heroes', title: 'K-Pop Demon Hunters ⚔️', filename: 'kpop-huntrix-heroes.png', category: 'K-Pop Demon Hunters', order: 1, featured: true },
+  { id: 'kpop-huntrix-concert', title: 'Superstar Concert 🎤', filename: 'kpop-huntrix-concert.png', category: 'K-Pop Demon Hunters', order: 2, featured: true },
+  { id: 'kpop-rumi-superstar', title: 'Rumi Super Star 💖', filename: 'kpop-rumi-superstar.png', category: 'K-Pop Demon Hunters', order: 3, featured: true },
+  { id: 'kpop-rumi-half-demon', title: 'Rumi Mystic Marks ✨', filename: 'kpop-rumi-half-demon.png', category: 'K-Pop Demon Hunters', order: 4, featured: false },
+  { id: 'kpop-rumi-singing', title: 'Rumi Live on Stage 🎙️', filename: 'kpop-rumi-singing.png', category: 'K-Pop Demon Hunters', order: 5, featured: false },
+  { id: 'kpop-mira-warrior', title: 'Mira Sword Dance 🗡️', filename: 'kpop-mira-warrior.png', category: 'K-Pop Demon Hunters', order: 6, featured: false },
+  { id: 'kpop-mira-ramyeon', title: 'Chibi Mira & Noodles 🍜', filename: 'kpop-mira-ramyeon.png', category: 'K-Pop Demon Hunters', order: 7, featured: false },
+  { id: 'kpop-zoey-shinkal', title: 'Zoey Dual Daggers ⚡', filename: 'kpop-zoey-shinkal.png', category: 'K-Pop Demon Hunters', order: 8, featured: false },
+  { id: 'kpop-zoey-portrait', title: 'Zoey Fashion Idol 🎀', filename: 'kpop-zoey-portrait.png', category: 'K-Pop Demon Hunters', order: 9, featured: false },
+  { id: 'kpop-zoey-singing', title: 'Zoey Smiling Vocalist 🎶', filename: 'kpop-zoey-singing.png', category: 'K-Pop Demon Hunters', order: 10, featured: false },
+  { id: 'kpop-saja-boys-band', title: 'The Saja Boys 🦁', filename: 'kpop-saja-boys-band.png', category: 'K-Pop Demon Hunters', order: 11, featured: false },
+  { id: 'kpop-jinu-sunglasses', title: 'Jinu Cool Shades 😎', filename: 'kpop-jinu-sunglasses.png', category: 'K-Pop Demon Hunters', order: 12, featured: false },
+  { id: 'kpop-baby-saja', title: 'Baby Saja Cutie 💫', filename: 'kpop-baby-saja.png', category: 'K-Pop Demon Hunters', order: 13, featured: false },
+  { id: 'kpop-rumi-jinu-duet', title: 'Rumi & Jinu Duet 🎶', filename: 'kpop-rumi-jinu-duet.png', category: 'K-Pop Demon Hunters', order: 14, featured: false },
+  { id: 'kpop-derpy-tiger', title: 'Derpy Tiger Spirit 🐯', filename: 'kpop-derpy-tiger.png', category: 'K-Pop Demon Hunters', order: 15, featured: true },
+  { id: 'kpop-derpy-wizard', title: 'Derpy Magic Hat 🎩', filename: 'kpop-derpy-wizard.png', category: 'K-Pop Demon Hunters', order: 16, featured: false },
+  { id: 'kpop-sussie-pigeon', title: 'Sussie the Pigeon 🐦', filename: 'kpop-sussie-pigeon.png', category: 'K-Pop Demon Hunters', order: 17, featured: false },
+  { id: 'unicorn-rainbow', title: 'Magical Unicorn 🦄', filename: 'unicorn.svg', category: 'Fairy Tale', order: 18, featured: false },
+  { id: 'cute-dinosaur', title: 'Baby Dino 🦕', filename: 'dinosaur.svg', category: 'Animals', order: 19, featured: false },
+  { id: 'princess-castle', title: 'Fairy Princess 👑', filename: 'princess-castle.svg', category: 'Fairy Tale', order: 20, featured: false },
+  { id: 'puppy-kitten', title: 'Puppy & Kitten 🐶🐱', filename: 'puppy-kitten.svg', category: 'Animals', order: 21, featured: false },
+  { id: 'space-rocket', title: 'Space Rocket 🚀', filename: 'space-rocket.svg', category: 'Adventure', order: 22, featured: false },
+  { id: 'ocean-turtle', title: 'Sea Turtle 🐢', filename: 'ocean-turtle.svg', category: 'Ocean', order: 23, featured: false }
 ];
 
 export const App: React.FC = () => {
@@ -35,7 +52,7 @@ export const App: React.FC = () => {
 
   // Pages & Navigation
   const [pages, setPages] = useState<PageMetadata[]>(FALLBACK_PAGES);
-  const [currentPageId, setCurrentPageId] = useState<string>('unicorn-rainbow');
+  const [currentPageId, setCurrentPageId] = useState<string>('kpop-huntrix-heroes');
   const [savedPages, setSavedPages] = useState<Record<string, PageDrawingState>>({});
   const [isBookshelfOpen, setIsBookshelfOpen] = useState<boolean>(false);
 
@@ -45,8 +62,8 @@ export const App: React.FC = () => {
   const [brushSize, setBrushSize] = useState<BrushSize>('medium');
 
   // Palm Rejection & Hardware Stylus state
-  // Default: True for palm protection, but toggleable for finger painting
-  const [palmRejection, setPalmRejection] = useState<boolean>(true);
+  // Default: false so finger painting works immediately; auto-activates when stylus is detected
+  const [palmRejection, setPalmRejection] = useState<boolean>(false);
   const [isStylusActive, setIsStylusActive] = useState<boolean>(false);
 
   // Action history and undo/redo stacks
@@ -228,7 +245,7 @@ export const App: React.FC = () => {
   const currentPageIndex = pages.findIndex((p) => p.id === currentPageId);
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-kid-cream overflow-hidden select-none font-bubble">
+    <div className="flex flex-col h-[100dvh] w-screen bg-kid-cream overflow-hidden select-none font-bubble">
       {/* Top Header */}
       <Header
         pageTitle={currentPage.title}
@@ -255,7 +272,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Drawing Easel Workspace */}
-      <main className="flex-1 relative overflow-hidden flex items-center justify-center">
+      <main className="flex-1 min-h-0 min-w-0 relative overflow-hidden flex items-center justify-center">
         <ColouringCanvas
           ref={canvasRef}
           pageId={currentPage.id}

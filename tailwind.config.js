@@ -9,6 +9,12 @@ export default {
       fontFamily: {
         bubble: ['"Fredoka"', 'Comic Sans MS', 'cursive', 'sans-serif'],
       },
+      screens: {
+        'xs': '480px',
+      },
+      borderWidth: {
+        '3': '3px',
+      },
       colors: {
         kid: {
           pink: '#FF6B8B',
