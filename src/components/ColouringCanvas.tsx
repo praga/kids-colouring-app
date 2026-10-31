@@ -59,10 +59,9 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
     const isDrawingRef = useRef<boolean>(false);
     const currentPointsRef = useRef<Point[]>([]);
     const currentStrokeIdRef = useRef<string>('');
-    const lineArtImageRef = useRef<HTMLImageElement | null>(null);
     const sessionStartTimeRef = useRef<number>(Date.now());
 
-    // Native logical canvas dimensions (matches line art aspect ratio 800 x 1000)
+    // Native canvas internal coordinate space (800 x 1000)
     const CANVAS_WIDTH = 800;
     const CANVAS_HEIGHT = 1000;
 
@@ -78,11 +77,7 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
-      const dpr = window.devicePixelRatio || 1;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      ctx.save();
-      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
       // Replay all actions (strokes & fills)
       for (const action of actions) {
@@ -91,7 +86,7 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
         } else if (action.type === 'bucket') {
           const lineArtCanvas = lineArtCanvasRef.current;
           if (lineArtCanvas) {
-            const lineCtx = lineArtCanvas.getContext('2d');
+            const lineCtx = lineArtCanvas.getContext('2d', { willReadFrequently: true });
             if (lineCtx) {
               executeFloodFill(
                 ctx,
@@ -106,33 +101,69 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
           }
         }
       }
-
-      ctx.restore();
     }, [actions]);
 
-    // Load and render line art image onto lineArtCanvas
+    // Load line art image and extract clean transparent black line art
     useEffect(() => {
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.src = imageSrc;
 
       img.onload = () => {
-        lineArtImageRef.current = img;
         const lineCanvas = lineArtCanvasRef.current;
         if (!lineCanvas) return;
         const ctx = lineCanvas.getContext('2d', { willReadFrequently: true });
         if (!ctx) return;
 
-        const dpr = window.devicePixelRatio || 1;
-        lineCanvas.width = CANVAS_WIDTH * dpr;
-        lineCanvas.height = CANVAS_HEIGHT * dpr;
+        lineCanvas.width = CANVAS_WIDTH;
+        lineCanvas.height = CANVAS_HEIGHT;
 
-        ctx.clearRect(0, 0, lineCanvas.width, lineCanvas.height);
-        ctx.save();
-        ctx.scale(dpr, dpr);
+        // Draw source image
+        ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        ctx.restore();
 
+        // Convert white paper background into 100% transparency
+        // This ensures the black outlines are on TOP and coloring is underneath
+        const imgData = ctx.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        const data = imgData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          const a = data[i + 3];
+
+          if (a < 10) {
+            // Already transparent
+            data[i + 3] = 0;
+            continue;
+          }
+
+          // Perceived lightness (0 = black, 255 = pure white)
+          const lum = 0.299 * r + 0.587 * g + 0.114 * b;
+
+          if (lum > 225) {
+            // White background becomes transparent
+            data[i + 3] = 0;
+          } else if (lum < 90) {
+            // Crisp dark outline stays solid black
+            data[i] = 25;
+            data[i + 1] = 25;
+            data[i + 2] = 25;
+            data[i + 3] = 255;
+          } else {
+            // Anti-aliased boundary edge
+            const alpha = Math.round(((225 - lum) / 135) * 255);
+            data[i] = 25;
+            data[i + 1] = 25;
+            data[i + 2] = 25;
+            data[i + 3] = Math.max(0, Math.min(255, alpha));
+          }
+        }
+
+        ctx.putImageData(imgData, 0, 0);
+
+        // Once line art is ready, redraw coloring canvas
         redrawColoringCanvas();
       };
     }, [imageSrc, redrawColoringCanvas]);
@@ -142,7 +173,7 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
       redrawColoringCanvas();
     }, [actions, redrawColoringCanvas]);
 
-    // Handle HiDPI scaling & resize tracking
+    // Track resize
     useEffect(() => {
       const updateSize = () => {
         if (containerRef.current) {
@@ -158,49 +189,31 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
       return () => window.removeEventListener('resize', updateSize);
     }, []);
 
-    // Set canvas internal resolution to high DPI matching tablet screen
+    // Initialize 1:1 internal canvas sizes
     useEffect(() => {
-      const dpr = window.devicePixelRatio || 1;
-
       [coloringCanvasRef.current, activeCanvasRef.current].forEach((canvas) => {
         if (canvas) {
-          canvas.width = CANVAS_WIDTH * dpr;
-          canvas.height = CANVAS_HEIGHT * dpr;
+          canvas.width = CANVAS_WIDTH;
+          canvas.height = CANVAS_HEIGHT;
         }
       });
-
       redrawColoringCanvas();
     }, [redrawColoringCanvas]);
 
     // Convert screen coordinates to canvas logical coordinate space (800x1000)
-    const getLogicalCoordinates = (screenX: number, screenY: number): { x: number; y: number } => {
-      const canvas = activeCanvasRef.current;
-      if (!canvas) return { x: screenX, y: screenY };
-
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = CANVAS_WIDTH / rect.width;
-      const scaleY = CANVAS_HEIGHT / rect.height;
-
-      return {
-        x: (screenX - rect.left) * scaleX,
-        y: (screenY - rect.top) * scaleY
-      };
-    };
-
-    // Extract points and map to logical coordinates
     const extractLogicalPoints = (e: React.PointerEvent<HTMLCanvasElement>): Point[] => {
       const rawPoints = extractPointsFromPointerEvent(e, sessionStartTimeRef.current);
       const canvas = activeCanvasRef.current;
       if (!canvas) return rawPoints;
 
       const rect = canvas.getBoundingClientRect();
-      const scaleX = CANVAS_WIDTH / rect.width;
-      const scaleY = CANVAS_HEIGHT / rect.height;
+      const scaleX = CANVAS_WIDTH / Math.max(rect.width, 1);
+      const scaleY = CANVAS_HEIGHT / Math.max(rect.height, 1);
 
       return rawPoints.map((pt) => ({
         ...pt,
-        x: pt.x * scaleX,
-        y: pt.y * scaleY
+        x: Math.max(0, Math.min(CANVAS_WIDTH, pt.x * scaleX)),
+        y: Math.max(0, Math.min(CANVAS_HEIGHT, pt.y * scaleY))
       }));
     };
 
@@ -220,7 +233,7 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
       try {
         e.currentTarget.setPointerCapture(e.pointerId);
       } catch {
-        // Pointer capture fallback
+        // Fallback
       }
 
       const points = extractLogicalPoints(e);
@@ -275,11 +288,7 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
       if (activeCanvas) {
         const ctx = activeCanvas.getContext('2d');
         if (ctx) {
-          const dpr = window.devicePixelRatio || 1;
-          ctx.clearRect(0, 0, activeCanvas.width, activeCanvas.height);
-          ctx.save();
-          ctx.scale(dpr, dpr);
-
+          ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
           const numericSize = BRUSH_SIZES[brushSize].size;
           drawStroke(
             ctx,
@@ -295,8 +304,6 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
             },
             1
           );
-
-          ctx.restore();
         }
       }
     };
@@ -311,7 +318,7 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
 
       currentPointsRef.current.push(...newPoints);
 
-      // Play soft sparkle sound periodically when drawing with magic brush
+      // Sparkle sound
       if (tool === 'sparkle' && currentPointsRef.current.length % 16 === 0) {
         sound.playSparkle();
       }
@@ -321,11 +328,7 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
       if (activeCanvas) {
         const ctx = activeCanvas.getContext('2d');
         if (ctx) {
-          const dpr = window.devicePixelRatio || 1;
-          ctx.clearRect(0, 0, activeCanvas.width, activeCanvas.height);
-          ctx.save();
-          ctx.scale(dpr, dpr);
-
+          ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
           const numericSize = BRUSH_SIZES[brushSize].size;
           drawStroke(
             ctx,
@@ -341,8 +344,6 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
             },
             1
           );
-
-          ctx.restore();
         }
       }
     };
@@ -354,7 +355,7 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
       try {
         e.currentTarget.releasePointerCapture(e.pointerId);
       } catch {
-        // Release fallback
+        // Fallback
       }
 
       // Clean active scratchpad
@@ -362,7 +363,7 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
       if (activeCanvas) {
         const ctx = activeCanvas.getContext('2d');
         if (ctx) {
-          ctx.clearRect(0, 0, activeCanvas.width, activeCanvas.height);
+          ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         }
       }
 
@@ -398,7 +399,7 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
         const ctx = offscreen.getContext('2d');
         if (!ctx) return null;
 
-        // 1. Draw solid white background
+        // 1. Draw solid white background paper
         ctx.fillStyle = '#FFFFFF';
         ctx.fillRect(0, 0, offscreen.width, offscreen.height);
 
@@ -408,13 +409,10 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
           ctx.drawImage(coloringCanvas, 0, 0, offscreen.width, offscreen.height);
         }
 
-        // 3. Draw line art layer on top with multiply blend mode
+        // 3. Draw black line art layer on top (lines always stay on top!)
         const lineCanvas = lineArtCanvasRef.current;
         if (lineCanvas) {
-          ctx.save();
-          ctx.globalCompositeOperation = 'multiply';
           ctx.drawImage(lineCanvas, 0, 0, offscreen.width, offscreen.height);
-          ctx.restore();
         }
 
         return offscreen.toDataURL('image/png');
@@ -437,15 +435,14 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
 
         const lineCanvas = lineArtCanvasRef.current;
         if (lineCanvas) {
-          ctx.save();
-          ctx.globalCompositeOperation = 'multiply';
           ctx.drawImage(lineCanvas, 0, 0, thumbCanvas.width, thumbCanvas.height);
-          ctx.restore();
         }
 
-        return thumbCanvas.toDataURL('image/webp', 0.8);
+        return thumbCanvas.toDataURL('image/webp', 0.85);
       }
     }));
+
+    const isLandscape = dimensions.width / Math.max(dimensions.height, 1) >= (CANVAS_WIDTH / CANVAS_HEIGHT);
 
     return (
       <div
@@ -456,41 +453,48 @@ export const ColouringCanvas = forwardRef<ColouringCanvasRef, ColouringCanvasPro
         <div
           className="relative bg-white rounded-3xl shadow-2xl border-4 border-kid-yellow/60 overflow-hidden flex items-center justify-center"
           style={{
-            aspectRatio: '800 / 1000',
+            aspectRatio: `${CANVAS_WIDTH} / ${CANVAS_HEIGHT}`,
+            height: isLandscape ? '100%' : 'auto',
+            width: isLandscape ? 'auto' : '100%',
             maxWidth: '100%',
             maxHeight: '100%'
           }}
         >
-          {/* Layer 1: Child Coloring Canvas (Strokes + Bucket Fills) */}
+          {/* Layer 1: Child Coloring Canvas (Strokes + Bucket Fills) - Bottom */}
           <canvas
             ref={coloringCanvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none"
+            width={CANVAS_WIDTH}
+            height={CANVAS_HEIGHT}
+            className="absolute inset-0 w-full h-full pointer-events-none z-[5]"
             style={{ width: '100%', height: '100%' }}
           />
 
-          {/* Layer 2: Line Art Image Canvas with Multiply blend mode (Outlines stay on top!) */}
-          <canvas
-            ref={lineArtCanvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{
-              width: '100%',
-              height: '100%',
-              mixBlendMode: 'multiply'
-            }}
-          />
-
-          {/* Layer 3: Active Scratchpad Canvas (Real-time in-progress stroke) */}
+          {/* Layer 2: Active Scratchpad Canvas (Real-time in-progress stroke) - Middle */}
           <canvas
             ref={activeCanvasRef}
+            width={CANVAS_WIDTH}
+            height={CANVAS_HEIGHT}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
-            className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-10"
+            className="absolute inset-0 w-full h-full cursor-crosshair touch-none z-[10]"
             style={{
               width: '100%',
-              height: '100%',
-              mixBlendMode: tool === 'eraser' ? 'normal' : 'multiply'
+              height: '100%'
+            }}
+          />
+
+          {/* Layer 3: Line Art Canvas (Black Outlines with Transparent Background) - TOP! */}
+          {/* Outlines sit physically on top with pointer-events-none so lines are never covered! */}
+          <canvas
+            ref={lineArtCanvasRef}
+            width={CANVAS_WIDTH}
+            height={CANVAS_HEIGHT}
+            className="absolute inset-0 w-full h-full pointer-events-none z-[20]"
+            style={{
+              width: '100%',
+              height: '100%'
             }}
           />
         </div>

@@ -1,10 +1,27 @@
-const CACHE_NAME = 'kids-colouring-cache-v1';
+const CACHE_NAME = 'kids-colouring-cache-v3';
 
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
   '/colouring-pages/pages.json',
+  '/colouring-pages/kpop-huntrix-heroes.png',
+  '/colouring-pages/kpop-huntrix-concert.png',
+  '/colouring-pages/kpop-rumi-superstar.png',
+  '/colouring-pages/kpop-rumi-half-demon.png',
+  '/colouring-pages/kpop-rumi-singing.png',
+  '/colouring-pages/kpop-mira-warrior.png',
+  '/colouring-pages/kpop-mira-ramyeon.png',
+  '/colouring-pages/kpop-zoey-shinkal.png',
+  '/colouring-pages/kpop-zoey-portrait.png',
+  '/colouring-pages/kpop-zoey-singing.png',
+  '/colouring-pages/kpop-saja-boys-band.png',
+  '/colouring-pages/kpop-jinu-sunglasses.png',
+  '/colouring-pages/kpop-baby-saja.png',
+  '/colouring-pages/kpop-rumi-jinu-duet.png',
+  '/colouring-pages/kpop-derpy-tiger.png',
+  '/colouring-pages/kpop-derpy-wizard.png',
+  '/colouring-pages/kpop-sussie-pigeon.png',
   '/colouring-pages/unicorn.svg',
   '/colouring-pages/dinosaur.svg',
   '/colouring-pages/princess-castle.svg',

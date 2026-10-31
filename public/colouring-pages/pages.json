@@ -1,10 +1,146 @@
 [
   {
+    "id": "kpop-huntrix-heroes",
+    "title": "K-Pop Demon Hunters ⚔️",
+    "filename": "kpop-huntrix-heroes.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 1,
+    "featured": true
+  },
+  {
+    "id": "kpop-huntrix-concert",
+    "title": "Superstar Concert 🎤",
+    "filename": "kpop-huntrix-concert.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 2,
+    "featured": true
+  },
+  {
+    "id": "kpop-rumi-superstar",
+    "title": "Rumi Super Star 💖",
+    "filename": "kpop-rumi-superstar.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 3,
+    "featured": true
+  },
+  {
+    "id": "kpop-rumi-half-demon",
+    "title": "Rumi Mystic Marks ✨",
+    "filename": "kpop-rumi-half-demon.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 4,
+    "featured": false
+  },
+  {
+    "id": "kpop-rumi-singing",
+    "title": "Rumi Live on Stage 🎙️",
+    "filename": "kpop-rumi-singing.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 5,
+    "featured": false
+  },
+  {
+    "id": "kpop-mira-warrior",
+    "title": "Mira Sword Dance 🗡️",
+    "filename": "kpop-mira-warrior.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 6,
+    "featured": false
+  },
+  {
+    "id": "kpop-mira-ramyeon",
+    "title": "Chibi Mira & Noodles 🍜",
+    "filename": "kpop-mira-ramyeon.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 7,
+    "featured": false
+  },
+  {
+    "id": "kpop-zoey-shinkal",
+    "title": "Zoey Dual Daggers ⚡",
+    "filename": "kpop-zoey-shinkal.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 8,
+    "featured": false
+  },
+  {
+    "id": "kpop-zoey-portrait",
+    "title": "Zoey Fashion Idol 🎀",
+    "filename": "kpop-zoey-portrait.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 9,
+    "featured": false
+  },
+  {
+    "id": "kpop-zoey-singing",
+    "title": "Zoey Smiling Vocalist 🎶",
+    "filename": "kpop-zoey-singing.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 10,
+    "featured": false
+  },
+  {
+    "id": "kpop-saja-boys-band",
+    "title": "The Saja Boys 🦁",
+    "filename": "kpop-saja-boys-band.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 11,
+    "featured": false
+  },
+  {
+    "id": "kpop-jinu-sunglasses",
+    "title": "Jinu Cool Shades 😎",
+    "filename": "kpop-jinu-sunglasses.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 12,
+    "featured": false
+  },
+  {
+    "id": "kpop-baby-saja",
+    "title": "Baby Saja Cutie 💫",
+    "filename": "kpop-baby-saja.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 13,
+    "featured": false
+  },
+  {
+    "id": "kpop-rumi-jinu-duet",
+    "title": "Rumi & Jinu Duet 🎶",
+    "filename": "kpop-rumi-jinu-duet.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 14,
+    "featured": false
+  },
+  {
+    "id": "kpop-derpy-tiger",
+    "title": "Derpy Tiger Spirit 🐯",
+    "filename": "kpop-derpy-tiger.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 15,
+    "featured": true
+  },
+  {
+    "id": "kpop-derpy-wizard",
+    "title": "Derpy Magic Hat 🎩",
+    "filename": "kpop-derpy-wizard.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 16,
+    "featured": false
+  },
+  {
+    "id": "kpop-sussie-pigeon",
+    "title": "Sussie the Pigeon 🐦",
+    "filename": "kpop-sussie-pigeon.png",
+    "category": "K-Pop Demon Hunters",
+    "order": 17,
+    "featured": false
+  },
+  {
     "id": "unicorn-rainbow",
     "title": "Magical Unicorn 🦄",
     "filename": "unicorn.svg",
     "category": "Fairy Tale",
-    "order": 1,
+    "order": 18,
     "featured": true
   },
   {
@@ -12,7 +148,7 @@
     "title": "Baby Dino 🦕",
     "filename": "dinosaur.svg",
     "category": "Animals",
-    "order": 2,
+    "order": 19,
     "featured": true
   },
   {
@@ -20,7 +156,7 @@
     "title": "Fairy Princess 👑",
     "filename": "princess-castle.svg",
     "category": "Fairy Tale",
-    "order": 3,
+    "order": 20,
     "featured": false
   },
   {
@@ -28,7 +164,7 @@
     "title": "Puppy & Kitten 🐶🐱",
     "filename": "puppy-kitten.svg",
     "category": "Animals",
-    "order": 4,
+    "order": 21,
     "featured": false
   },
   {
@@ -36,7 +172,7 @@
     "title": "Space Rocket 🚀",
     "filename": "space-rocket.svg",
     "category": "Adventure",
-    "order": 5,
+    "order": 22,
     "featured": false
   },
   {
@@ -44,7 +180,7 @@
     "title": "Sea Turtle 🐢",
     "filename": "ocean-turtle.svg",
     "category": "Ocean",
-    "order": 6,
+    "order": 23,
     "featured": false
   }
 ]
