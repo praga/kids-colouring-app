@@ -1,0 +1,13 @@
+.git
+.github
+node_modules
+dist
+dist-server
+scripts
+tests
+.env*
+*.pdf*
+*.webp
+*.log
+.DS_Store
+Thumbs.db

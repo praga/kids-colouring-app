@@ -1,5 +1,26 @@
-node_modules
-dist
-dist-server
+# Dependencies
+node_modules/
+
+# Production builds
+dist/
+dist-server/
+
+# Environment files & secrets
+.env
+.env.local
+.env.*.local
+*.tar.gz
+
+# Operating System files
 .DS_Store
+Thumbs.db
+
+# Logs
 *.log
+npm-debug.log*
+
+# Test artifacts & diagnostic outputs
+test-results/
+playwright-report/
+huntrix-test.pdf*
+huntrix-test.webp

@@ -21,7 +21,6 @@ RUN npm ci --omit=dev && npm install -g tsx
 COPY --from=builder /app/dist ./dist
 COPY server ./server
 COPY public ./public
-COPY scripts ./scripts
 COPY tsconfig*.json ./
 
 RUN mkdir -p /app/data/pages && chown -R node:node /app

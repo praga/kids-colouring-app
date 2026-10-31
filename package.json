@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "start": "NODE_ENV=production tsx server/index.ts",
     "sync-pages": "tsx scripts/sync-pages.ts",
+    "deploy:nas": "tsx scripts/deploy-nas.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -30,6 +31,7 @@
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.21",
+    "playwright": "^1.64.1",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.19.3",

@@ -2,20 +2,40 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const rootDir = process.cwd();
 
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8086;
 
+// Security hardening
+app.disable('x-powered-by');
+app.use((_req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
+
 app.use(cors());
 app.use(express.json());
 
-const PUBLIC_PAGES_DIR = path.resolve(__dirname, '../public/colouring-pages');
-const DIST_PAGES_DIR = path.resolve(__dirname, '../dist/colouring-pages');
-const PAGES_DIR = fs.existsSync(DIST_PAGES_DIR) ? DIST_PAGES_DIR : PUBLIC_PAGES_DIR;
+// Locate colouring-pages directory
+const candidateDirs = [
+  path.resolve(rootDir, 'dist/colouring-pages'),
+  path.resolve(rootDir, 'public/colouring-pages'),
+  path.resolve(rootDir, 'colouring-pages'),
+  path.resolve(__dirname, 'colouring-pages'),
+  path.resolve(__dirname, '../public/colouring-pages')
+];
+
+let PAGES_DIR = candidateDirs[0];
+for (const dir of candidateDirs) {
+  if (fs.existsSync(dir)) {
+    PAGES_DIR = dir;
+    break;
+  }
+}
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -60,15 +80,28 @@ app.get('/api/pages', (req, res) => {
 });
 
 // Serve static frontend assets
-const DIST_DIR = path.resolve(__dirname, '../dist');
-if (fs.existsSync(DIST_DIR)) {
-  app.use(express.static(DIST_DIR));
+const distCandidates = [
+  path.resolve(rootDir, 'dist'),
+  path.resolve(__dirname, '../dist'),
+  path.resolve(__dirname, 'dist')
+];
+
+let STATIC_DIR = distCandidates[0];
+for (const dir of distCandidates) {
+  if (fs.existsSync(dir) && fs.existsSync(path.join(dir, 'index.html'))) {
+    STATIC_DIR = dir;
+    break;
+  }
+}
+
+if (fs.existsSync(STATIC_DIR)) {
+  app.use(express.static(STATIC_DIR));
   app.get('*', (req, res) => {
-    res.sendFile(path.join(DIST_DIR, 'index.html'));
+    res.sendFile(path.join(STATIC_DIR, 'index.html'));
   });
 } else {
   // Development static fallback
-  const PUBLIC_DIR = path.resolve(__dirname, '../public');
+  const PUBLIC_DIR = path.resolve(rootDir, 'public');
   app.use(express.static(PUBLIC_DIR));
 }
 
